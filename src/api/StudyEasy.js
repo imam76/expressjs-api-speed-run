@@ -3,6 +3,8 @@ const router = express.Router();
 const monk = require("monk");
 const Joi = require("joi");
 
+const middlewares = require("../middlewares");
+
 const db = monk(process.env.MONGGO_URI);
 const study = db.get("user");
 
@@ -12,7 +14,7 @@ const Schema = Joi.object({
 });
 
 // read all
-router.get("/", async (req, res, next) => {
+router.get("/", middlewares.authentication, async (req, res, next) => {
   try {
     const items = await study.find({});
     res.json(items);

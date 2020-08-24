@@ -2,6 +2,7 @@ const express = require("express");
 
 const emojis = require("./emojis");
 const studyeasy = require("./StudyEasy");
+const auth = require("./auth");
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.get("/", (req, res) => {
 
 router.use("/emojis", emojis);
 router.use("/study", studyeasy);
+router.use("/auth", auth);
 
 module.exports = router;
